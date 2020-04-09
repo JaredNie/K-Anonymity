@@ -1,0 +1,7 @@
+age
+workclass
+education
+marital-status
+race
+sex
+native-country

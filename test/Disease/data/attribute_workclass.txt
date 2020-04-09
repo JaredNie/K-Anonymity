@@ -1,0 +1,4 @@
+workclass;Private,gov,Unemployed
+Private;Self-emp-not-inc,Self-emp-inc
+gov;Federal-gov,Local-gov,State-gov
+Unemployed;without-pay,Never-worked
