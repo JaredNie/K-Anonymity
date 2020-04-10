@@ -164,6 +164,16 @@ if __name__ == '__main__':
     print("precision_2=" + str(precision_2))
 
 
+    #第一步：读取数据，生成元组
+    path = os.path.abspath('..')  # 表示当前所处的文件夹上一级文件夹
+    data_path = path + '/data/result.txt'
+    with open(data_path,"a") as file: #只需要将之前的”w"改为“a"即可，代表追加内容
+        file.write("total_loss=" + str(total_loss) + " "+"\n")
+        file.write("total_loss_2=" + str(total_loss_2) + " "+"\n")
+        file.write("precision_1=" + str(precision_1) + " "+"\n")
+        file.write("precision_2=" + str(precision_2) + " "+"\n")
+    file.close()
+    print("保存文件成功")
 
 
     # attr = 'race'
@@ -199,6 +209,3 @@ if __name__ == '__main__':
     # #     #
     # #
     # # print(Trees)
-
-        
-
