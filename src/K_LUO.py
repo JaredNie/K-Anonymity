@@ -24,7 +24,7 @@ def Init():
 
     #第一步：读取数据，生成元组
     path = os.path.abspath('..')  # 表示当前所处的文件夹上一级文件夹
-    data_path = path + '/data/data_new.txt'
+    data_path = path + '/data/data_new_50.txt'
     data_file = open(data_path, 'r')
     lines = data_file.readlines()
     for line in lines:
@@ -172,6 +172,8 @@ if __name__ == '__main__':
         file.write("total_loss_2=" + str(total_loss_2) + " "+"\n")
         file.write("precision_1=" + str(precision_1) + " "+"\n")
         file.write("precision_2=" + str(precision_2) + " "+"\n")
+        dt_ms = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f') # 含微秒的日期时间，来源 比特量化
+        file.write(dt_ms + " "+"\n\n\n-----------------------")
     file.close()
     print("保存文件成功")
 
