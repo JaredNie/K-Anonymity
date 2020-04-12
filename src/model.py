@@ -1,6 +1,9 @@
 import tree as a
 import os
 
+from sklearn import preprocessing
+
+
 #保存到文件的函数
 def Save2File(data):
     '''
@@ -17,6 +20,20 @@ def Save2File(data):
     data_file.write(str)
     data_file.close()
 
+def Save2File2(data, output_file):
+    '''
+    把数据集保存到文件
+    :param data:
+    :return:
+    '''
+    path = os.path.abspath('..')  # 表示当前所处的文件夹上一级文件夹
+    data_path = path + '/data/' + output_file
+    data_file = open(data_path, 'w')
+    str=''
+    for each in data:
+        str=str + '{}\n'.format(each)
+    data_file.write(str)
+    data_file.close()
 
 #------------------------------------------------------------------------------------
 #------------------------------------------------------------------------------------
@@ -74,6 +91,39 @@ def Test_K_Anonymity(lowLoss_data,QID,K):
             if i == j:
                 continue
             if Equal(lowLoss_data.iloc[i], lowLoss_data.iloc[j,:], QID):
+                tmp_k = tmp_k + 1
+                if tmp_k >= K:
+                    same = True
+                    break
+        count = count + 1
+        # print("比对数据中..." + str(count))
+        KN_result.append(same)
+
+
+
+    return KN_result
+
+
+def Test_K_Anonymity_One_Hot(lowLoss_data,QID,K):
+    KN_result = []
+    count = 0
+
+    tmp_data = lowLoss_data.loc[:, QID]
+
+    enc = preprocessing.OneHotEncoder()
+
+    enc.fit(tmp_data)
+    one_hot_data = enc.transform(tmp_data).toarray()
+
+    attr_len = len(QID)
+
+    for i in range(len(lowLoss_data)):
+        tmp_k = 1
+        same = False
+        for j in range(len(lowLoss_data)):
+            if i == j:
+                continue
+            if one_hot_data[i].dot(one_hot_data[j]) == attr_len:
                 tmp_k = tmp_k + 1
                 if tmp_k >= K:
                     same = True
