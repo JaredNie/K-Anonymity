@@ -9,6 +9,7 @@ from model import *
 import os
 import pandas as pd
 import time
+import datetime
 import threading
 
 import argparse
@@ -129,7 +130,7 @@ if __name__ == '__main__':
             第三步，属性集长度为n，选择n-1个属性组成n种集合的元组，统计出各元组中存在的等价类的个数，
             并取等价类数量最大的元组属性的补集进行泛化，所泛化的属性值是元组中等价类对应的数据项中的属性值，
             将泛化后的结果返回到第一步进行K匿名检测
-            
+
             采用多线程方式，以提高处理速度
             '''
 
@@ -229,6 +230,15 @@ if __name__ == '__main__':
     print("precision_2=" + str(precision_2))
 
 
+    with open('../data/' + args.output_file,"a") as file: #只需要将之前的”w"改为“a"即可，代表追加内容
+    file.write("total_loss=" + str(total_loss) + " "+"\n")
+    file.write("total_loss_2=" + str(total_loss_2) + " "+"\n")
+    file.write("precision_1=" + str(precision_1) + " "+"\n")
+    file.write("precision_2=" + str(precision_2) + " "+"\n")
+    dt_ms = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f') # 含微秒的日期时间，来源 比特量化
+    file.write(dt_ms + " "+"\n\n\n-----------------------")
+    file.close()
+    print("保存文件成功")
 
 
     # attr = 'race'
@@ -264,6 +274,3 @@ if __name__ == '__main__':
     # #     #
     # #
     # # print(Trees)
-
-        
-
