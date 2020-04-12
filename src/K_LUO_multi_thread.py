@@ -231,12 +231,12 @@ if __name__ == '__main__':
 
 
     with open('../data/' + args.output_file,"a") as file: #只需要将之前的”w"改为“a"即可，代表追加内容
-    file.write("total_loss=" + str(total_loss) + " "+"\n")
-    file.write("total_loss_2=" + str(total_loss_2) + " "+"\n")
-    file.write("precision_1=" + str(precision_1) + " "+"\n")
-    file.write("precision_2=" + str(precision_2) + " "+"\n")
-    dt_ms = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f') # 含微秒的日期时间，来源 比特量化
-    file.write(dt_ms + " "+"\n\n\n-----------------------")
+        file.write("total_loss=" + str(total_loss) + " "+"\n")
+        file.write("total_loss_2=" + str(total_loss_2) + " "+"\n")
+        file.write("precision_1=" + str(precision_1) + " "+"\n")
+        file.write("precision_2=" + str(precision_2) + " "+"\n")
+        dt_ms = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f') # 含微秒的日期时间，来源 比特量化
+        file.write(dt_ms + " "+"\n\n\n-----------------------")
     file.close()
     print("保存文件成功")
 
