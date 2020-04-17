@@ -57,13 +57,48 @@ nohup python K_LUO.py >my.log &
 
 **多线程版本，速度可以提升一些**
 
+50条数据，单线程 =45s 多线程 = 6s
+
+100条数据，单线程 =375s 多线程 = 21s
+
+1000条数据，单线程 =5381s 多线程 = 825s
+
+
+
+| 数据条数 | 优化前    | 多线程   |
+| -------- | --------- | -------- |
+| 50       | 45秒      | 6秒      |
+| 100      | 375秒     | 21秒     |
+| 1000     | 5381秒    | 825秒    |
+| 30000    | 11081分钟 | 1457分钟 |
+
+
+
 ```bash
 # 运用命令行执行， --data_file 放在data目录下的数据文件名， --k; k 匿名的k值
 # --output_file  为结果的输出文件名，也是在data目录下
 python K_LUO_multi_thread.py --data_file 100.txt --k 2 --output_file res_100.txt
+python K_LUO_multi_thread.py --data_file 1000.txt --k 2 --output_file res_1000.txt
+python K_LUO_multi_thread.py --data_file 30000.txt --k 2 --output_file res_30000.txt
 
+# 后台执行
+nohup python K_LUO_multi_thread.py --data_file 30000.txt --k 2 --output_file res_30000.txt &
 
 ```
+
+
+
+
+
+**数据分片**
+
+
+
+```bash
+python K_LUO_multi_thread.py --data_file 100.txt --k 2 --output_file res_100.txt --split_chunk 10
+```
+
+
 
 
 
